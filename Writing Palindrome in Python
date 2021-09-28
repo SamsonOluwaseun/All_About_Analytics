@@ -1,0 +1,6 @@
+mes=input("Enter the word and see if it is palindrome ")
+mes= mes.lower()
+if mes==mes[::-1]:
+    print("This word is palindrome")
+else:
+    print("This word is not palindrome")
