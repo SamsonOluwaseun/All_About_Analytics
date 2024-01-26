@@ -1,0 +1,67 @@
+import streamlit as st
+
+########## Section 1##############################################
+########## Text Display Element in Streamlit #############################
+
+st.text("Hello Streamlit and World")
+
+
+# Give your app a title
+st.title("Your title")
+
+# Headers for sessions
+st.header("Main header")
+
+# Subheader
+st.subheader("Sub header")
+
+# Markdown for other fonts
+st.markdown("This is markdown **text**")
+st.markdown("# Header 1")
+st.markdown("## Header 2")
+st.markdown("### Header 3")
+st.markdown("#### Header 4")
+st.markdown("##### Header 5")
+
+# Caption
+st.caption("This is a caption")
+
+# Code Block use multilline comment here 
+st.code("""import pandas as pd 
+pd.read_csv(my_csv_file)"""
+)
+
+# Preformatted (text no format)
+st.text("Some text")
+
+# LaTeX for matimatical equations
+st.latex("x = 2^2") 
+
+# Divider
+st.text("Text above divider")
+st.divider()
+st.text("Text below divider")
+
+# st.write can take alot of argument (can display text, dataframe, image etc)
+st.write("some text")
+
+
+
+################## Section 2######################################
+### Data Display element for Dataframe, Tables etc in Application
+import pandas as pd
+df= pd.read_csv("data/sample.csv")
+
+# Display dataframe
+st.dataframe(df) # Highly recommended for flexibility
+# Or
+st.write(df)
+
+# Display as a static table
+st.table(df)
+
+# Displaying Metric
+st.metric(label= "Population", value=900, delta= 20, delta_color="normal")
+st.metric(label= "Employment", value=300, delta= -20, delta_color="normal")
+st.metric(label= "Expenses", value=200, delta= -200, delta_color="inverse")
+########################################################################################
