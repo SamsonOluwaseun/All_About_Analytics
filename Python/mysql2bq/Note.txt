@@ -1,0 +1,34 @@
+Steps
+--Install google cloud SDK
+
+-- Create virtual environment
+virtualenv ~/.etl_project
+-- Use virtual environment
+source ~/.etl_project/bin/activate
+
+Install packages in the virtual environment
+pip install numpy mysql.connector-python google-cloud pyarrow
+--Get the list of all available libraries in m environment
+pip freeze
+
+-- To uninstall
+pip uninstall mysql.connector
+-- To deactivate
+deactivate
+
+--Create file for connecting to mysql
+
+mysql.connector.connect
+df= pd.read_sql(query,conn)
+
+
+-- Partitioning in GCP Bigquery
+--Working with Bigquery
+pip install google-cloud-Bigquery
+
+
+-- Loding jobs
+bigquery.loadjobconfig
+bigquery.client
+
+write_disposition="WRITE_APPEND"/ WRITE_TRUNCATE
