@@ -8,6 +8,7 @@ job_config = bigquery.loadjobconfig(
     skip_leading_rows =1,
     source_format= bigquery.SourceFormat.csv,
     autodetect = True
+    write_disposition="WRITE_APPEND" #DEFAULT is WRITE_APPEND, WRITE_TRUNCATE: clean the table and write new file
 )
 
 # file vars
