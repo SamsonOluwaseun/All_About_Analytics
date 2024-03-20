@@ -7,7 +7,7 @@ I used PostgresSQL on VSCode and load the csv files into my database tables.
 # The Analysis
 ## Sessions involved
 -- Basic Query
-''' SQL
+'''SQL
 select 
     job_id, 
     job_title_short,
