@@ -7,7 +7,7 @@ I used PostgresSQL on VSCode and load the csv files into my database tables.
 # The Analysis
 ## Sessions involved
 -- Basic Query
-'''SQL
+~~~SQL
 select 
     job_id, 
     job_title_short,
@@ -17,9 +17,9 @@ select
     job_postings_fact
  order by 
     job_location asc;
-'''
+~~~
 -- Comparisons Queries
-'''SQL
+~~~SQL
 Select 
     job_id, 
     job_title_short,
@@ -32,9 +32,9 @@ where
     job_location ='Tampa, FL'
  order by 
     job_id asc;
-'''
+~~~
 -- Wildcards
-'''Sql
+~~~Sql
 Select 
     name
 from
@@ -43,9 +43,9 @@ where
     name like '%Tech_' 
 order by 
     name asc;
-'''
+~~~
 -- Alias
-'''Sql
+~~~Sql
 Select 
     job_id, 
     job_title_short,
@@ -57,9 +57,9 @@ Select
     job_postings_fact
  order by 
     job_id asc;
-'''
+~~~
 -- Operations
-''' Sql
+~~~Sql
 Select 
     activity_id,
     hours_spent,
@@ -68,26 +68,29 @@ Select
 from
     invoices_fact
 order by 
-    activity_id;'''
+    activity_id;
+~~~
 -- Aggregations
-'''sql
+~~~sql
 SELECT 
 	COUNT(*) AS jobs_with_health_insurance
 FROM 
 	job_postings_fact
 WHERE 
-	job_health_insurance = TRUE;'''
+	job_health_insurance = TRUE;
+~~~
 -- Null Values
-''' Sql
+~~~Sql
 SELECT 
 	skill_id, 
 	skills
 FROM 
 	skills_dim
 WHERE 
-	type IS NULL;'''
+	type IS NULL;
+~~~
 -- Joins
-'''sql
+~~~sql
 SELECT 
     job_postings_fact.job_id,
     job_postings_fact.job_title, 
@@ -100,9 +103,10 @@ INNER JOIN company_dim ON job_postings_fact.company_id = company_dim.company_id
 WHERE 
     job_postings_fact.job_title_short = 'Data Scientist'
 ORDER BY    
-    job_postings_fact.job_posted_date DESC;'''
+    job_postings_fact.job_posted_date DESC;
+~~~
 -- Date Functions
-'''sql
+~~~sql
 SELECT
     job_schedule_type,
     AVG(salary_year_avg) AS avg_yearly_salary,
@@ -115,17 +119,18 @@ GROUP BY
     job_schedule_type
 ORDER BY
 	job_schedule_type;
-'''
+~~~
 --Manipulating tables
-''' Sql
+~~~Sql
 CREATE TABLE data_science_jobs (
     job_id INT PRIMARY KEY,
     job_title TEXT,
     company_name TEXT,
     post_date DATE
-);'''
+);
+~~~
 -- Case Statements
-'''Sql
+~~~Sql
 SELECT
   job_id,
   job_title,
@@ -141,9 +146,10 @@ WHERE
     salary_year_avg IS NOT NULL
     and job_title_short = 'Data Analyst'
 ORDER BY
-    salary_year_avg DESC;'''
+    salary_year_avg DESC;
+~~~
 -- Subqueries
-'''SQL
+~~~SQL
 SELECT skills_dim.skills
 FROM skills_dim
 INNER JOIN (
@@ -153,9 +159,9 @@ INNER JOIN (
     ORDER BY COUNT(job_id) DESC
     LIMIT 5
 ) AS top_skills ON skills_dim.skill_id = top_skills.skill_id;
-'''
+~~~
 -- Common Tabular Expressions(CTEs)
-'''sql
+~~~sql
 WITH title_diversity AS (
     SELECT
         company_id,
@@ -171,9 +177,10 @@ FROM title_diversity
 	INNER JOIN company_dim ON title_diversity.company_id = company_dim.company_id  
 ORDER BY 
 	unique_titles DESC  
-LIMIT 10;  '''
+LIMIT 10;
+~~~
 -- Union Operators
-'''sql
+~~~sql
 (
     SELECT 
         job_id, 
@@ -198,7 +205,8 @@ UNION ALL
 )
 ORDER BY 
 	salary_info DESC, 
-	job_id; '''
+	job_id;
+~~~
 
 # What I Learned
 This is a good sql refreshing course and I revalidated my knowledge of writing sql scripts
