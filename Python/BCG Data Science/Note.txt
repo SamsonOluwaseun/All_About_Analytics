@@ -1,0 +1,13 @@
+EDA steps
+1. Head & tail
+Descriptive statistics
+2.info: for description of columns and datatypes
+3. describe: For statistics about dataset
+4. Data visualization:
+
+
+Data Engineering
+1. Remove unwanted columns in the dataset
+2. Expand datasetto create new features
+3. Combine columns to have better one
+4. Combine dataset
