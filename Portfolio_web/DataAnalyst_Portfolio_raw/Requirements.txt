@@ -1,0 +1,13 @@
+1: Personal Image : 2
+2. Project Pictures and link (Number of projects) 
+3. CV
+4. Your main header name: eg Data Analyst, Business Intelligence Analyst etc
+5. Location: eg: Lagos, Nigeria
+6. About you summary
+I'm a data-driven leader with over 5 years of experience in data science, analytics, engineering, and ERP implementation. I leverage my strong relationship-building skills and business acumen to lead cross-functional teams in complex projects across diverse industries, including insurance, finance, telecom, and FMCG.
+
+7. name
+8. DOB 14 Sep
+9. Email
+10. Phone
+11. Academics and certifications date, course title,organization
