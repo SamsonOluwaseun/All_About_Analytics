@@ -29,6 +29,11 @@ Getting this data help us achieve the following:
 Here, I investigated whether price sensitivity is the most influential factor for a customer churning and used frameworks to conduct exploratory data analysis. Using python to analyze client data, I
 created data visualizations to help you interpret key trends.
 
+The following EDA commands were used
+- Loaded data with pandas
+```client_df = pd.read_csv('./client_data.csv')
+price_df = pd.read_csv('./price_data.csv') ```
+-  
 Data used contains 14606 Rows, and 63 columns, with an ID and Churn column representing the customer Identity and current status.
 ### Feature Engineering and Modelling
 ### Findings and Recommendation
