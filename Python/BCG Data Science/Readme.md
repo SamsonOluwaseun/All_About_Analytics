@@ -35,6 +35,24 @@ The following EDA commands were used
 client_df = pd.read_csv('./client_data.csv')
 price_df = pd.read_csv('./price_data.csv')
 ```
+-  Confirmed the structure of the dataset with the .head() function
+```
+client_df.head(3)
+price_df.head(3)
+```
+-  Obtained the data descriptive statistics, understanding the data that we're dealing with along with the data types of each column. The data types will dictate how I transform and engineer features.
+```
+client_df.info()
+price_df.info()
+```
+- I looked at some statistics about my dataset using
+```
+client_df.describe()
+price_df.describe()
+```
+-  Performed data vitualization and created some charts
+  -  Churn distribution showing about 10% of the total customers have churned
+  -  
 -  
 Data used contains 14606 Rows, and 63 columns, with an ID and Churn column representing the customer Identity and current status.
 ### Feature Engineering and Modelling
