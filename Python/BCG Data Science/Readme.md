@@ -52,7 +52,7 @@ price_df.describe()
 ```
 -  Performed data vitualization and created some charts
   -  Churn distribution showing about 10% of the total customers have churned
-![ChurnStatus](https://github.com/SamsonOluwaseun/All_About_Analytics/blob/main/Python/BCG%20Data%20Science/Image/churn.png)
+      ![ChurnStatus](https://github.com/SamsonOluwaseun/All_About_Analytics/blob/main/Python/BCG%20Data%20Science/Image/churn.png)
   -  
 -  
 Data used contains 14606 Rows, and 63 columns, with an ID and Churn column representing the customer Identity and current status.
