@@ -2,7 +2,7 @@
 W3Schools Tables Script
 Prepared By: Oluwaseun Odeyemi
 Date: 04/08/2004
-Organisation: Samlytics Data Professionals
+Organisation: Knowledge and Skill Forumn
 For Data analytics and hands-on learning of SQL Scripting
 */
 
