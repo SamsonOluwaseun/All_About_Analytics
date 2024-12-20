@@ -7,3 +7,9 @@ SQL is a powerful tool that can be used for extracting information from database
 This Calculating Free-to-Paid Conversion Rate with SQL project aims to put your SQL skills into practice. I worked with an excerpt of a learning platform data—stripped of personally identifiable information—to estimate the fraction of students who purchase a subscription after starting a lecture, i.e., the free-to-paid conversion rate among students who’ve engaged with video content on the 365 platform. I was also be tasked with calculating several other key metrics and analyzing the results.
 
 The data includes three tables storing information about students’ registration dates, engagement dates, and subscription purchase dates.
+
+## Project requirements
+For this Calculating Free-to-Paid Conversion Rate with SQL, I work with Microsoft SQL Server.
+
+## Project files
+db_course_conversions.sql – the file contains the database for the project.
