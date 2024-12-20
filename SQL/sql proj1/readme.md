@@ -39,3 +39,12 @@ Hint: Research the DATEDIFF function in MySQL.
 Note the Venn diagram below.
 
 ![Alt text](image/Studentdistribution.png)
+
+The resulting set retrieve includes the student IDs of students entering the diagram’s shaded region. Additionally, my objective is to determine the conversion rate of students who have already watched a lecture. Therefore, I filter my result dataset so that the date of first-time engagement comes before (or is equal to) the date of first-time purchase.
+
+**Sanity check:** The number of records in the resulting set should be 20,255.
+
+To complete the task, I followed the **instructions** below.
+
+1. First, I imported the db_course_conversions database and refresh the Schemas pane to see it appear. Apply the USE keyword to use the named database as the default (current) one.
+2. Retrieve the columns one by one as listed in the task. Use the MIN aggregate function to find the first-time engagement and purchase dates. Apply the DATEDIFF function to see the difference in the respective days.
