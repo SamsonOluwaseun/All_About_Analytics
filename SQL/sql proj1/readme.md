@@ -35,3 +35,5 @@ Import the db_course_conversions database—stored in the db_course_conversions.
 * date_diff_watch_purch – (int) the difference in days between the date of first-time engagement and the date of first-time purchase (NULL if they have no purchases)
 
 Hint: Research the DATEDIFF function in MySQL.
+
+![Alt text](image/student distribution.png)
