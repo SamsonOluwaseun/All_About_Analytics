@@ -36,4 +36,4 @@ Import the db_course_conversions database—stored in the db_course_conversions.
 
 Hint: Research the DATEDIFF function in MySQL.
 
-![Alt text](image/student distribution.png)
+![Alt text](image/studentdistribution.png)
