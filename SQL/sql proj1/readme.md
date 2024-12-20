@@ -18,18 +18,20 @@ db_course_conversions.sql – the file contains the database for the project.
 This option provides detailed instructions and steps on how to complete each task. Please note this is not the only solution to the project but rather a helpful guide.
 
 ## Create the Subquery
-This practice project allows you to apply your SQL knowledge to a real-world dataset. Once you complete all tasks, you will have found the answer to the following questions:
+This practice project allows me to apply your SQL knowledge to a real-world dataset. Once completed I was able to find the answer to the following questions:
 
-What is the free-to-paid conversion rate of students who have watched a lecture on the 365 platform?
-What is the average duration between the registration date and when a student has watched a lecture for the first time (date of first-time engagement)?
-What is the average duration between the date of first-time engagement and when a student purchases a subscription for the first time (date of first-time purchase)?
-How can we interpret these results, and what are their implications?
+* What is the free-to-paid conversion rate of students who have watched a lecture on the platform?
+* What is the average duration between the registration date and when a student has watched a lecture for the first time (date of first-time engagement)?
+* What is the average duration between the date of first-time engagement and when a student purchases a subscription for the first time (date of first-time purchase)?
+* How can we interpret these results, and what are their implications?
+  
 Import the db_course_conversions database—stored in the db_course_conversions.sql file—into your schemas and study its content. Then, by appropriately joining and aggregating the tables, create a new result dataset comprising the following columns:
 
-student_id – (int) the unique identification of a student
-date_registered – (date) the date on which the student registered on the 365 platform
-first_date_watched – (date) the date of the first engagement
-first_date_purchased – (date) the date of first-time purchase (NULL if they have no purchases)
-date_diff_reg_watch – (int) the difference in days between the registration date and the date of first-time engagement
-date_diff_watch_purch – (int) the difference in days between the date of first-time engagement and the date of first-time purchase (NULL if they have no purchases)
+* student_id – (int) the unique identification of a student
+* date_registered – (date) the date on which the student registered on the 365 platform
+* first_date_watched – (date) the date of the first engagement
+* first_date_purchased – (date) the date of first-time purchase (NULL if they have no purchases)
+* date_diff_reg_watch – (int) the difference in days between the registration date and the date of first-time engagement
+* date_diff_watch_purch – (int) the difference in days between the date of first-time engagement and the date of first-time purchase (NULL if they have no purchases)
+
 Hint: Research the DATEDIFF function in MySQL.
