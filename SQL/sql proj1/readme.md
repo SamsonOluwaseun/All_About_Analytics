@@ -149,6 +149,7 @@ HAVING days_diff_watch_purch>0;
 
 ## Create Main Query
 Excellent work! I’ve created a temporary result set adhering to the following Venn diagram and columns: 
+
 ![Alt text](image/Studentdistribution2.png)
 
 * student_id – (int) the unique identification of a student
