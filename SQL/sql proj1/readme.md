@@ -4,12 +4,12 @@ Calculating the Fraction of Students Who Convert to Paying Ones after Starting a
 ## Case Description
 SQL is a powerful tool that can be used for extracting information from databases with its invaluable ability to join tables and aggregate results. Data extraction is the first step towards data analysis, and, therefore, extracting data correctly is crucial to arrive at the correct conclusions during the analysis process.
 
-This Calculating Free-to-Paid Conversion Rate with SQL project aims to put your SQL skills into practice. I worked with an excerpt of a learning platform data—stripped of personally identifiable information—to estimate the fraction of students who purchase a subscription after starting a lecture, i.e., the free-to-paid conversion rate among students who’ve engaged with video content on the 365 platform. I was also be tasked with calculating several other key metrics and analyzing the results.
+This Calculating Free-to-Paid Conversion Rate with SQL project aims to put my SQL skills into practice. I worked with an excerpt of a learning platform data—stripped of personally identifiable information—to estimate the fraction of students who purchase a subscription after starting a lecture, i.e., the free-to-paid conversion rate among students who’ve engaged with video content on the 365 platform. I was also tasked with calculating several other key metrics and analyze the results.
 
 The data includes three tables storing information about students’ registration dates, engagement dates, and subscription purchase dates.
 
 ## Project requirements
-For this Calculating Free-to-Paid Conversion Rate with SQL, I work with Microsoft SQL Server.
+For this Calculating Free-to-Paid Conversion Rate with SQL, I work with MySQL.
 
 ## Project files
 db_course_conversions.sql – the file contains the database for the project.
@@ -48,3 +48,55 @@ To complete the task, I followed the **instructions** below.
 
 1. First, I imported the db_course_conversions database and refresh the Schemas pane to see it appear. Apply the USE keyword to use the named database as the default (current) one.
 2. Retrieve the columns one by one as listed in the task. Use the MIN aggregate function to find the first-time engagement and purchase dates. Apply the DATEDIFF function to see the difference in the respective days.
+``` SQL
+-- Top 5 records in Student_engagement table -- columns student_id, date_watched
+select * from student_engagement limit 5;
+-- Total records in Student_engagement table  -- 73,246
+Select count(*) from Student_engagement;
+-- Total distinct students in Student_engagement table  -- 20,778
+Select count(distinct(student_id)) from Student_engagement; 
+
+-- Top 5 records in Student_info table -- columns student_id, date_registered
+select * from Student_info limit 5;
+-- Total records in Student_info table  -- 40,979
+Select count(*) from Student_info;
+-- Total distinct students in Student_info table  -- 40,979
+Select count(distinct(student_id)) from Student_info; 
+
+-- Top 5 records in Student_purchases table -- columns purchase_id, student_id, date_purchased
+select * from Student_purchases limit 5;
+-- Total records in Student_purchases table  -- 5,922
+Select count(*) from Student_purchases;
+-- Total distinct students in Student_purchases table  -- 3,138
+Select count(distinct(student_id)) from Student_purchases; 
+
+
+SELECT 
+    student_id,
+    date_watched,
+    MIN(date_watcched) AS first_date_watched,
+    MIN(???) AS first_date_purchased,
+    DATEDIFF(???) AS days_diff_reg_watch,
+    DATEDIFF(???) AS days_diff_watch_purch
+    from Student_engagement;
+    
+    
+with tab1 as (Select student_id, min(date_purchased) first_date_purchased from Student_purchases
+group by student_id), 
+tab2 as (Select student_id, min(date_watched) first_date_watched from Student_engagement
+group by student_id),
+tab3 as (Select * from Student_info)
+
+select a.student_id, first_date_purchased, first_date_watched, date_registered,
+DATEDIFF(first_date_watched,date_registered) AS days_diff_reg_watch,
+    DATEDIFF(first_date_watched,first_date_purchased) AS days_diff_watch_purch
+ from tab1 a
+left join
+tab2 b
+on a.student_id=b.student_id
+left join
+tab3 c
+on a.student_id=c.student_id;
+
+```
+4. 
