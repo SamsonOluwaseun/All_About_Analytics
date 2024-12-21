@@ -127,7 +127,8 @@ FROM
 ```
 
 7. Using CTE Method
-``` SQLwith tab1 as (Select student_id, min(date_purchased) first_date_purchased from Student_purchases
+``` SQL
+with tab1 as (Select student_id, min(date_purchased) first_date_purchased from Student_purchases
 group by student_id), 
 tab2 as (Select student_id, min(date_watched) first_date_watched from Student_engagement
 group by student_id),
