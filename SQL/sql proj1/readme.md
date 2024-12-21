@@ -146,3 +146,47 @@ tab3 c
 on a.student_id=c.student_id
 HAVING days_diff_watch_purch>0;
 ```
+
+## Create Main Query
+Excellent work! I’ve created a temporary result set adhering to the following Venn diagram and columns: 
+![Alt text](image/Studentdistribution2.png)
+
+* student_id – (int) the unique identification of a student
+* date_registered – (date) the date on which the student registered on the 365 platform
+* first_date_purchased – (date) the date of first-time purchase (NULL if they have no purchases)
+* date_diff_reg_watch – (int) the difference in days between the registration date and the date of first-time engagement
+* date_diff_watch_purch – (int) the difference in days between the date of first-time engagement and the date of first-time purchase (NULL if they have no purchases)
+
+In this task, I used the subquery I’ve created and retrieve the following three metrics.
+
+* **Free-to-Paid Conversion Rate:**
+This metric measures the proportion of engaged students who choose to benefit from full course access on the 365 platform by purchasing a subscription after watching a lecture. It is calculated as the ratio between:
+
+* The number of students who watched a lecture and purchased a subscription on the same day or later.
+* The total number of students who have watched a lecture.
+
+Convert the result to percentages and call the field conversion_rate.
+
+* **Average Duration Between Registration and First-Time Engagement:**
+This metric measures the average duration between the date of registration and the date of first-time engagement. This will tell us how long it takes, on average, for a student to watch a lecture after registration. The metric is calculated by finding the ratio between:
+
+- The sum of all such durations.
+- The count of these durations, or alternatively, the number of students who have watched a lecture.
+
+Call the field av_reg_watch.
+
+* **Average Duration Between First-Time Engagement and First-Time Purchase:**
+This metric measures the average time it takes individuals to subscribe to the platform after viewing a lecture. It is calculated by dividing:
+
+- The sum of all such durations.
+- The count of these durations, or alternatively, the number of students who have made a purchase.
+
+Call the field av_watch_purch.
+
+I used the following instructions to carry out the task.
+
+1. I surrounded the subquery I created in the previous part (Create the Subquery) in parentheses and give it an alias, say a.
+2. Considering the framework below. I fill in the appropriate columns to retrieve the three metrics described in this task. The results are rounded to two decimal places for clarity. Don’t forget to convert the conversion_rate metric to percentages.
+``` SQL
+
+ ```
