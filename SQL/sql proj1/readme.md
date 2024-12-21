@@ -47,7 +47,7 @@ The resulting set retrieve includes the student IDs of students entering the dia
 To complete the task, I followed the **instructions** below.
 
 1. First, I imported the db_course_conversions database and refresh the Schemas pane to see it appear. Apply the USE keyword to use the named database as the default (current) one.
-2. Retrieve the columns one by one as listed in the task. Use the MIN aggregate function to find the first-time engagement and purchase dates. Apply the DATEDIFF function to see the difference in the respective days.
+2. Perform basic statistics on the tables provided
 ``` SQL
 -- Top 5 records in Student_engagement table -- columns student_id, date_watched
 select * from student_engagement limit 5;
@@ -69,8 +69,65 @@ select * from Student_purchases limit 5;
 Select count(*) from Student_purchases;
 -- Total distinct students in Student_purchases table  -- 3,138
 Select count(distinct(student_id)) from Student_purchases;  
-    
-with tab1 as (Select student_id, min(date_purchased) first_date_purchased from Student_purchases
+
+```
+3. Retrieve the columns one by one as listed in the task. Use the MIN aggregate function to find the first-time engagement and purchase dates. Apply the DATEDIFF function to see the difference in the respective days.
+``` SQL
+SELECT 
+    e.student_id,
+    date_registered,
+    MIN(date_watched) AS first_date_watched,
+    MIN(date_purchased) AS first_date_purchased,
+    DATEDIFF(date_registered,MIN(date_watched)) AS days_diff_reg_watch,
+    DATEDIFF(MIN(date_watched),MIN(date_purchased)) AS days_diff_watch_purch
+```
+4. Next, consider how to join the three tables to retrieve the highlighted records in the Venn diagram.
+``` SQL
+FROM
+    student_engagement e
+	left join
+    student_info i ON  e.student_id=i.student_id
+	left join
+    student_purchases p ON e.student_id=p.student_id
+```
+5. Applying the MIN aggregate function in the previous step requires grouping the results appropriately.
+``` SQL
+SELECT 
+    e.student_id,
+    date_registered,
+    MIN(date_watched) AS first_date_watched,
+    MIN(date_purchased) AS first_date_purchased,
+    DATEDIFF(date_registered,MIN(date_watched)) AS days_diff_reg_watch,
+    DATEDIFF(MIN(date_watched),MIN(date_purchased)) AS days_diff_watch_purch
+FROM
+    student_engagement e
+	left join
+    student_info i ON  e.student_id=i.student_id
+	left join
+    student_purchases p ON e.student_id=p.student_id
+    GROUP BY student_id
+```
+6. Filter the data to exclude the records where the date of first-time engagement comes later than the date of first-time purchase. Remember to keep the students who have never made a purchase.
+``` SQL
+SELECT 
+    e.student_id,
+    date_registered,
+    MIN(date_watched) AS first_date_watched,
+    MIN(date_purchased) AS first_date_purchased,
+    DATEDIFF(date_registered,MIN(date_watched)) AS days_diff_reg_watch,
+    DATEDIFF(MIN(date_watched),MIN(date_purchased)) AS days_diff_watch_purch
+FROM
+    student_engagement e
+	left join
+    student_info i ON  e.student_id=i.student_id
+	left join
+    student_purchases p ON e.student_id=p.student_id
+    GROUP BY student_id
+    HAVING days_diff_watch_purch>0;
+```
+
+7. Using CTE Method
+``` SQLwith tab1 as (Select student_id, min(date_purchased) first_date_purchased from Student_purchases
 group by student_id), 
 tab2 as (Select student_id, min(date_watched) first_date_watched from Student_engagement
 group by student_id),
@@ -85,7 +142,6 @@ tab2 b
 on a.student_id=b.student_id
 left join
 tab3 c
-on a.student_id=c.student_id;
-
+on a.student_id=c.student_id
+HAVING days_diff_watch_purch>0;
 ```
-4. 
