@@ -68,18 +68,7 @@ select * from Student_purchases limit 5;
 -- Total records in Student_purchases table  -- 5,922
 Select count(*) from Student_purchases;
 -- Total distinct students in Student_purchases table  -- 3,138
-Select count(distinct(student_id)) from Student_purchases; 
-
-
-SELECT 
-    student_id,
-    date_watched,
-    MIN(date_watcched) AS first_date_watched,
-    MIN(???) AS first_date_purchased,
-    DATEDIFF(???) AS days_diff_reg_watch,
-    DATEDIFF(???) AS days_diff_watch_purch
-    from Student_engagement;
-    
+Select count(distinct(student_id)) from Student_purchases;  
     
 with tab1 as (Select student_id, min(date_purchased) first_date_purchased from Student_purchases
 group by student_id), 
