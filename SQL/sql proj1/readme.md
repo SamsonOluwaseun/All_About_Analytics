@@ -263,7 +263,7 @@ on a.student_id=c.student_id
 ## Interpretation
 SQL is a tool typically used for managing data, combined with other software when more involved data analysis tasks are required. With that in mind, below, we try to make sense of the three metrics we’ve retrieved. 
 
-** Conversion Rate **
+**1. Conversion Rate**
 
 Let’s first discuss the result we obtained for the free-to-paid conversion rate metric. The fraction of students who purchase monthly, quarterly, or annual subscriptions from those who watch a lecture is about 11%—i.e., for every 100 students who come to the 365 platform, roughly 11 of them purchase a subscription. At first glance, this number seems relatively low, but let’s dig a bit deeper.
 
@@ -275,15 +275,15 @@ Still, some users might need more time to embark on a data science journey. They
 
 Finally, we must consider that some users might not fancy the platform and would instead take the first steps toward data science elsewhere. Still, whatever the reason, reaching out to customers is essential, pinpointing any flaws and striving towards a better product.
 
-** 2. Average Duration Between Registration and First-Time Engagement **
+**2. Average Duration Between Registration and First-Time Engagement**
 
 The results from the second metric indicate that, on average, it takes students between three and four days to start watching a lecture after registering on the platform. Ideally, it would be great if a new student started watching a lecture on their first day. Every other element the platform offers (exams, projects, career tracks) requires more attention, while the lessons are easy to check out. It’s worth diving a bit deeper into this analysis.
 
 The dataset’s average is a metric that shouldn’t be studied in a vacuum because outliers heavily affect it. It’s, therefore, essential to study the other two metrics that typically come hand-in-hand with the average: median and mode. The median tells us which number sits in the middle of a dataset—assuming it’s ordered—while the mode is the number that occurs most often in a dataset. Calculating these is not as straightforward in SQL—so you can use another tool. I’ve chosen Python. The results are as follows:
 
-*Mode: 0
-*Median: 0
-*Mean: 3.42
+	*Mode: 0
+	*Median: 0
+	*Mean: 3.42
 
 The number that repeats the most in the data is 0. Additionally, the number that sits in the middle of the dataset is also 0. Such metric values indicate the right-skewness of the data—i.e., we can find outliers to the right, towards higher values, of the data distribution. This implies that some students in the dataset have registered on the 365 platform but started watching a lecture much later. To convince ourselves, let’s also study visually the distribution of the numbers.
 
@@ -291,13 +291,13 @@ The number that repeats the most in the data is 0. Additionally, the number that
 
 Almost all students watch a lecture immediately after registering. Very few return to the platform to start a course several days or even a year after registration. One reason for returning could be because of a marketing campaign, a free-day campaign, etc.
 
-** 3. Average Duration Between First-Time Engagement and First-Time Purchase **
+**3. Average Duration Between First-Time Engagement and First-Time Purchase**
 
 Let’s study analogously the average duration between the first-time engagement and purchase. The results we retrieved from our SQL analysis show that, on average, it takes students roughly 24 days to purchase a subscription after getting acquainted with the product. Once again, we should take this result with a grain of salt and study the other relevant metrics: median and mode. Using, for example, Python, we can calculate the three metrics, which turn out to be as follows:
 
-* Mode: 0
-* Median: 1
-* Mean: 26
+	* Mode: 0
+	* Median: 1
+	* Mean: 26
   
 We see that the mean is significantly higher than the other two metrics. This points towards the presence of even more extreme outliers in this dataset. Let’s discuss the metrics one by one. The most occurring value is again 0. Therefore, students who purchase a subscription are prone to do it on the same day. The value in the middle of the dataset—assuming it’s ordered—is 1, which means that the people who buy on the same day are less than half of all users making a purchase. To be more specific, about 49% of the people purchase on the day they’ve watched a lecture for the first time. The mean value, however, assumes that the transition from free-plan to paying students happens for almost a month. Let’s again estimate this discrepancy visually.
 
