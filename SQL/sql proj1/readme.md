@@ -123,7 +123,8 @@ FROM
 	left join
     student_purchases p ON e.student_id=p.student_id
     GROUP BY student_id
-    HAVING days_diff_watch_purch>0;
+    HAVING first_date_purchased IS NULL
+    OR first_date_watched <= first_date_purchased;
 ```
 
 7. Using CTE Method
@@ -144,7 +145,8 @@ on a.student_id=b.student_id
 left join
 tab3 c
 on a.student_id=c.student_id
-HAVING days_diff_watch_purch>0;
+HAVING first_date_purchased IS NULL
+    OR first_date_watched <= first_date_purchased;
 ```
 
 ## Create Main Query
@@ -229,6 +231,8 @@ FROM
 	left join
     student_purchases p ON e.student_id=p.student_id
     GROUP BY student_id
+HAVING first_date_purchased IS NULL
+    OR first_date_watched <= first_date_purchased
 ) a;
  ```
 OR using CTE
@@ -257,6 +261,8 @@ on a.student_id=b.student_id
 left join
 tab3 c
 on a.student_id=c.student_id
+HAVING first_date_purchased IS NULL
+    OR first_date_watched <= first_date_purchased
 ) a;
 ```
 
