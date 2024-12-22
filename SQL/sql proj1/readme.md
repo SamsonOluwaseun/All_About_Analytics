@@ -163,24 +163,42 @@ In this task, I used the subquery I’ve created and retrieve the following thre
 * **Free-to-Paid Conversion Rate:**
 This metric measures the proportion of engaged students who choose to benefit from full course access on the 365 platform by purchasing a subscription after watching a lecture. It is calculated as the ratio between:
 
-* The number of students who watched a lecture and purchased a subscription on the same day or later.
-* The total number of students who have watched a lecture.
-
+	* The number of students who watched a lecture and purchased a subscription on the same day or later.
+	* The total number of students who have watched a lecture.
+```Sql
+ ROUND(count(first_date_purchased)/ count(student_id),
+            2)*100 AS conversion_rate
+```
 Convert the result to percentages and call the field conversion_rate.
 
 * **Average Duration Between Registration and First-Time Engagement:**
 This metric measures the average duration between the date of registration and the date of first-time engagement. This will tell us how long it takes, on average, for a student to watch a lecture after registration. The metric is calculated by finding the ratio between:
 
-- The sum of all such durations.
-- The count of these durations, or alternatively, the number of students who have watched a lecture.
-
+	- The sum of all such durations.
+	- The count of these durations, or alternatively, the number of students who have watched a lecture.
+``` SQL
+ROUND(SUM(days_diff_reg_watch) / COUNT(days_diff_reg_watch),
+            2) AS av_reg_watch,
+```
+OR
+``` SQL
+avg(days_diff_reg_watch) av_reg_watch2
+```
 Call the field av_reg_watch.
 
 * **Average Duration Between First-Time Engagement and First-Time Purchase:**
 This metric measures the average time it takes individuals to subscribe to the platform after viewing a lecture. It is calculated by dividing:
 
-- The sum of all such durations.
-- The count of these durations, or alternatively, the number of students who have made a purchase.
+	- The sum of all such durations.
+	- The count of these durations, or alternatively, the number of students who have made a purchase.
+``` SQL
+ ROUND(SUM(days_diff_watch_purch) / COUNT(days_diff_watch_purch),
+            2) AS av_watch_purch
+```
+Or
+``` SQL
+avg(days_diff_watch_purch) av_watch_purch2,
+```
 
 Call the field av_watch_purch.
 
@@ -189,5 +207,55 @@ I used the following instructions to carry out the task.
 1. I surrounded the subquery I created in the previous part (Create the Subquery) in parentheses and give it an alias, say a.
 2. Considering the framework below. I fill in the appropriate columns to retrieve the three metrics described in this task. The results are rounded to two decimal places for clarity. Don’t forget to convert the conversion_rate metric to percentages.
 ``` SQL
-
+SELECT 
+ ROUND(count(first_date_purchased)/ count(student_id),
+            2)*100 AS conversion_rate,
+ROUND(SUM(days_diff_reg_watch) / COUNT(days_diff_reg_watch),
+            2) AS av_reg_watch,
+ROUND(SUM(days_diff_watch_purch) / COUNT(days_diff_watch_purch),
+            2) AS av_watch_purch
+FROM
+    (SELECT 
+    e.student_id,
+    date_registered,
+    MIN(date_watched) AS first_date_watched,
+    MIN(date_purchased) AS first_date_purchased,
+    DATEDIFF(MIN(date_watched), date_registered) AS days_diff_reg_watch,
+    DATEDIFF(MIN(date_purchased), MIN(date_watched)) AS days_diff_watch_purch
+FROM
+    student_engagement e
+	left join
+    student_info i ON  e.student_id=i.student_id
+	left join
+    student_purchases p ON e.student_id=p.student_id
+    GROUP BY student_id
+) a;
  ```
+OR using CTE
+
+``` SQL
+SELECT 
+ ROUND(count(first_date_purchased)/ count(student_id),
+            2)*100 AS conversion_rate,
+avg(days_diff_reg_watch) av_reg_watch,
+avg(days_diff_watch_purch) av_reg_purch
+FROM
+    (
+with tab1 as (Select student_id, min(date_watched) first_date_watched from Student_engagement
+group by student_id), 
+tab2 as (Select student_id, min(date_purchased) first_date_purchased from Student_purchases
+group by student_id),
+tab3 as (Select * from Student_info)
+
+select a.student_id, date_registered, first_date_watched, first_date_purchased,  
+DATEDIFF(first_date_watched,date_registered) AS days_diff_reg_watch,
+    DATEDIFF(first_date_purchased, first_date_watched) AS days_diff_watch_purch
+ from tab1 a
+left join
+tab2 b
+on a.student_id=b.student_id
+left join
+tab3 c
+on a.student_id=c.student_i
+) a;
+```
