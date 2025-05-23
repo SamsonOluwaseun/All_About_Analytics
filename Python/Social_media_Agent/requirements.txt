@@ -1,0 +1,11 @@
+openai
+openai-agents
+youtube_transcript_api
+python-dotenv
+streamlit
+requests
+google-generativeai
+langchain_core
+langchain_openai
+langchain_google_genai
+langchain_community
