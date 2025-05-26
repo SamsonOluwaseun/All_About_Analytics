@@ -1,0 +1,244 @@
+-- SQL Script for a Simple E-commerce Database (Compatible with SQL Server)
+
+-- -----------------------------------------------------
+-- Drop Tables (if they exist) to allow for clean re-creation
+-- Note: SQL Server requires dropping tables that depend on others first
+-- -----------------------------------------------------
+IF OBJECT_ID('Order_Details', 'U') IS NOT NULL DROP TABLE Order_Details;
+IF OBJECT_ID('Orders', 'U') IS NOT NULL DROP TABLE Orders;
+IF OBJECT_ID('Products', 'U') IS NOT NULL DROP TABLE Products;
+IF OBJECT_ID('Customers', 'U') IS NOT NULL DROP TABLE Customers;
+IF OBJECT_ID('Shipping', 'U') IS NOT NULL DROP TABLE Shipping;
+
+-- -----------------------------------------------------
+-- Table: Customers
+-- Stores information about the customers
+-- -----------------------------------------------------
+CREATE TABLE Customers (
+    customer_id INT PRIMARY KEY IDENTITY(1,1), -- SQL Server's auto-increment syntax
+    first_name NVARCHAR(50) NOT NULL,
+    last_name NVARCHAR(50) NOT NULL,
+    email NVARCHAR(100) UNIQUE NOT NULL,
+    phone NVARCHAR(20),
+    address NVARCHAR(255),
+    city NVARCHAR(100),
+    state NVARCHAR(100),
+    zip_code NVARCHAR(10),
+    registration_date DATE DEFAULT GETDATE() -- SQL Server function for current date
+);
+
+-- -----------------------------------------------------
+-- Table: Products
+-- Stores information about the products available for sale
+-- -----------------------------------------------------
+CREATE TABLE Products (
+    product_id INT PRIMARY KEY IDENTITY(1,1), -- SQL Server's auto-increment syntax
+    product_name NVARCHAR(255) NOT NULL,
+    description NVARCHAR(MAX), -- SQL Server's type for large strings
+    price DECIMAL(10, 2) NOT NULL,
+    stock_quantity INT NOT NULL DEFAULT 0,
+    category NVARCHAR(100),
+    CHECK (price >= 0),
+    CHECK (stock_quantity >= 0)
+);
+
+-- -----------------------------------------------------
+-- Table: Shipping
+-- Stores information about different shipping methods
+-- -----------------------------------------------------
+CREATE TABLE Shipping (
+    shipping_id INT PRIMARY KEY IDENTITY(1,1), -- SQL Server's auto-increment syntax
+    shipping_method NVARCHAR(100) NOT NULL UNIQUE,
+    cost DECIMAL(10, 2) NOT NULL,
+    estimated_delivery_days INT,
+    CHECK (cost >= 0),
+    CHECK (estimated_delivery_days >= 0)
+);
+
+-- -----------------------------------------------------
+-- Table: Orders
+-- Stores information about customer orders
+-- -----------------------------------------------------
+CREATE TABLE Orders (
+    order_id INT PRIMARY KEY IDENTITY(1,1), -- SQL Server's auto-increment syntax
+    customer_id INT NOT NULL,
+    order_date DATETIME DEFAULT GETDATE(), -- SQL Server function for current datetime
+    total_amount DECIMAL(10, 2) NOT NULL,
+    order_status NVARCHAR(50) NOT NULL, -- e.g., 'Pending', 'Shipped', 'Delivered', 'Cancelled'
+    shipping_id INT,
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id),
+    FOREIGN KEY (shipping_id) REFERENCES Shipping(shipping_id),
+    CHECK (total_amount >= 0)
+);
+
+-- -----------------------------------------------------
+-- Table: Order_Details
+-- Stores the details of each item within an order (many-to-many relationship)
+-- -----------------------------------------------------
+CREATE TABLE Order_Details (
+    order_detail_id INT PRIMARY KEY IDENTITY(1,1), -- SQL Server's auto-increment syntax
+    order_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL,
+    unit_price DECIMAL(10, 2) NOT NULL, -- Price at the time of order
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id),
+    FOREIGN KEY (product_id) REFERENCES Products(product_id),
+    CHECK (quantity > 0),
+    CHECK (unit_price >= 0)
+);
+
+-- -----------------------------------------------------
+-- Insert Sample Data
+-- -----------------------------------------------------
+
+-- Customers
+INSERT INTO Customers (first_name, last_name, email, phone, address, city, state, zip_code, registration_date) VALUES
+('Alice', 'Smith', 'alice.smith@example.com', '555-111-2222', '123 Main St', 'Anytown', 'CA', '90210', '2023-01-10'),
+('Bob', 'Johnson', 'bob.j@example.com', '555-333-4444', '456 Oak Ave', 'Otherville', 'NY', '10001', '2023-01-15'),
+('Charlie', 'Brown', 'charlie.b@example.com', '555-555-6666', '789 Pine Ln', 'Smallville', 'TX', '75001', '2023-02-01'),
+('Diana', 'Prince', 'diana.p@example.com', '555-777-8888', '101 Hero Blvd', 'Metropolis', 'CA', '90211', '2023-02-10'),
+('Eve', 'Adams', 'eve.a@example.com', '555-999-0000', '202 River Rd', 'Big City', 'NY', '10002', '2023-03-01');
+
+-- Products
+INSERT INTO Products (product_name, description, price, stock_quantity, category) VALUES
+('Laptop Pro', 'High performance laptop', 1200.00, 50, 'Electronics'),
+('Wireless Mouse', 'Ergonomic wireless mouse', 25.00, 200, 'Accessories'),
+('Mechanical Keyboard', 'Gaming mechanical keyboard', 75.00, 100, 'Accessories'),
+('USB-C Hub', 'Multi-port USB-C adapter', 40.00, 150, 'Accessories'),
+('External SSD 1TB', 'Fast portable SSD', 90.00, 75, 'Storage'),
+('Monitor 27-inch', '4K UHD Monitor', 350.00, 30, 'Electronics'),
+('Webcam HD', 'Full HD Webcam', 50.00, 120, 'Accessories');
+
+-- Shipping
+INSERT INTO Shipping (shipping_method, cost, estimated_delivery_days) VALUES
+('Standard Shipping', 5.00, 5),
+('Express Shipping', 15.00, 2),
+('Next Day Delivery', 25.00, 1);
+
+-- Orders
+INSERT INTO Orders (customer_id, order_date, total_amount, order_status, shipping_id) VALUES
+(1, '2023-03-05 10:30:00', 1275.00, 'Delivered', 1), -- Alice: Laptop + Keyboard
+(2, '2023-03-06 14:00:00', 25.00, 'Shipped', 1),    -- Bob: Mouse
+(1, '2023-03-07 11:45:00', 90.00, 'Pending', 2),    -- Alice: SSD
+(3, '2023-03-08 09:00:00', 400.00, 'Delivered', 1), -- Charlie: Monitor + USB-C Hub
+(4, '2023-03-09 16:15:00', 50.00, 'Shipped', 3),    -- Diana: Webcam
+(2, '2023-03-10 10:00:00', 75.00, 'Pending', 1),    -- Bob: Keyboard
+(1, '2023-03-11 13:00:00', 50.00, 'Cancelled', 1);  -- Alice: Webcam (cancelled)
+
+-- Order_Details
+INSERT INTO Order_Details (order_id, product_id, quantity, unit_price) VALUES
+(1, 1, 1, 1200.00), -- Laptop Pro
+(1, 3, 1, 75.00),   -- Mechanical Keyboard
+(2, 2, 1, 25.00),   -- Wireless Mouse
+(3, 5, 1, 90.00),   -- External SSD 1TB
+(4, 6, 1, 350.00),  -- Monitor 27-inch
+(4, 4, 1, 40.00),   -- USB-C Hub
+(5, 7, 1, 50.00),   -- Webcam HD
+(6, 3, 1, 75.00),   -- Mechanical Keyboard
+(7, 7, 1, 50.00);   -- Webcam HD (cancelled order)
+
+
+--     ============Business Questions========================
+--E-commerce SQL Training Questions
+
+-- 1 Beginner Questions (SELECT, WHERE, ORDER BY, LIMIT)
+-- Retrieve Customer Contact Information:
+-- List the first_name, last_name, and email of all customers.
+SELECT first_name, last_name, email
+FROM Customers;
+
+
+-- Affordable Products:
+--Show the product_name and price of all products that have a price less than 50.00.
+
+SELECT product_name, price
+FROM Products
+WHERE price < 50.00;
+
+-- Recent Orders:
+-- Display all columns from the Orders table, ordered by order_date in descending order (most recent first).
+
+SELECT *
+FROM Orders
+ORDER BY order_date DESC;
+
+-- Intermediate Questions (JOINs, GROUP BY, COUNT, SUM, AVG)
+-- Customer Order Overview:
+-- For each order, display the order_id, the customer_id, and the first_name and last_name of the customer who placed it.
+
+SELECT
+    O.order_id,
+    O.customer_id,
+    C.first_name,
+    C.last_name
+FROM Orders AS O
+JOIN Customers AS C
+    ON O.customer_id = C.customer_id;
+
+-- Products by Category:
+-- Calculate the total number of products available in each category.
+
+SELECT
+    category,
+    COUNT(product_id) AS total_products
+FROM Products
+GROUP BY category;
+
+-- Total Revenue from Delivered Orders:
+-- Find the total total_amount for all orders that have an order_status of 'Delivered'.
+
+SELECT
+    SUM(total_amount) AS total_delivered_revenue
+FROM Orders
+WHERE order_status = 'Delivered';
+
+-- Total Quantity Sold Per Product:
+-- For each product, calculate the total quantity sold across all orders. Display the product_name and the total_quantity_sold.
+
+SELECT
+    P.product_name,
+    SUM(OD.quantity) AS total_quantity_sold
+FROM Products AS P
+JOIN Order_Details AS OD
+    ON P.product_id = OD.product_id
+GROUP BY P.product_name
+ORDER BY total_quantity_sold DESC;
+
+-- Advanced Questions (Subqueries, CTEs, Window Functions, Complex JOINs, HAVING)
+-- Highest Single Order Value:
+-- Identify the customer_id and total_amount of the single order with the highest total_amount.
+
+SELECT TOP 1 customer_id, total_amount
+FROM Orders
+ORDER BY total_amount DESC;
+
+-- Frequent Shoppers:
+-- List the first_name and last_name of customers who have placed more than one order.
+
+SELECT
+    C.first_name,
+    C.last_name
+FROM Customers AS C
+JOIN Orders AS O
+    ON C.customer_id = O.customer_id
+GROUP BY C.customer_id, C.first_name, C.last_name
+HAVING COUNT(O.order_id) > 1;
+
+-- First Order Date for Each Customer:
+-- For each customer, find their customer_id, first_name, last_name, and the order_date of their first ever order.
+WITH CustomerFirstOrder AS (
+    SELECT
+        customer_id,
+        order_date,
+        ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY order_date ASC) as rn
+    FROM Orders
+)
+SELECT
+    C.customer_id,
+    C.first_name,
+    C.last_name,
+    CFO.order_date AS first_order_date
+FROM Customers AS C
+JOIN CustomerFirstOrder AS CFO
+    ON C.customer_id = CFO.customer_id
+WHERE CFO.rn = 1;
