@@ -1,7 +1,7 @@
 # 🏦 CreditSense AI: Automated Loan Approval & Risk Assessment 🚀
 
-[![GitHub stars](https://img.shields.io/github/stars/SamsonOluwaseun/All_About_Analytics/blob/main/Python/Loan_Approval_Prediction_Model.svg?style=social&label=Star)](https://github.com/SamsonOluwaseun/All_About_Analytics/blob/main/Python/Loan_Approval_Prediction_Model)
-[![GitHub forks](https://img.shields.io/github/forks/SamsonOluwaseun/All_About_Analytics/blob/main/Python/Loan_Approval_Prediction_Model.svg?style=social&label=Fork)](https://github.com/SamsonOluwaseun/All_About_Analytics/blob/main/Python/Loan_Approval_Prediction_Model/fork)
+[![GitHub stars](https://img.shields.io/github/stars/SamsonOluwaseun/All_About_Analytics.svg?style=social&label=Star)](https://github.com/SamsonOluwaseun/All_About_Analytics/main/Python/Loan_Approval_Prediction_Model)
+[![GitHub forks](https://img.shields.io/github/forks/SamsonOluwaseun/All_About_Analytics.svg?style=social&label=Fork)](https://github.com/SamsonOluwaseun/All_About_Analytics/main/Python/Loan_Approval_Prediction_Model/fork)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ---
