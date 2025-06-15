@@ -128,8 +128,9 @@ To run this project locally, follow these steps:
 
 1.  **Clone the repository (if applicable):**
     ```bash
-    git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
+    git clone [https://github.com/SamsonOluwaseun/All_About_Analytics/tree/main/Python/Loan_Approval_Prediction_Model.git](https://github.com/your-username/your-repo-name.git)
     cd your-repo-name
+    
     ```
 2.  **Install dependencies:**
     ```bash
