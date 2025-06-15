@@ -137,9 +137,7 @@ To run this project locally, follow these steps:
     pip install pandas numpy scikit-learn Faker
     ```
 3.  **Run the Python script:**
-    ```bash
-    python your_script_name.py # (e.g., main.py or loan_predictor.py)
-    ```
+    Open the **Loan_Prediction_Model.ipynb** and run through the steps
 
 The script will generate the dataset, train the models, and print the performance comparison to your console.
 
