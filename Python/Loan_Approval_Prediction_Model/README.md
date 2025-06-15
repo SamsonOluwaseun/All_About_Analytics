@@ -103,6 +103,7 @@ The results are presented in a clear tabular format, highlighting the strengths 
 To provide a more intuitive understanding of model strengths, the performance metrics for each classifier (individual and ensemble) can be visualized. This typically involves:
 
 * **Bar Charts**: Comparing Accuracy, Precision, Recall, and F1-Score across all models using individual bar charts for each metric. This allows for quick identification of the top-performing models in specific areas.
+
   ![Other Metrics Visuals](images/Other-Metics.png)
 
 These bar charts provide a direct visual comparison of Accuracy, Precision, Recall, and F1-Score for each model.
@@ -110,7 +111,9 @@ They quickly highlight which models excel in specific performance areas, offerin
 For instance, a model with high Recall might be good at identifying most 'Approved' loans, while high Precision indicates fewer false 'Approved' predictions.
 
 * **ROC Curves**: Plotting the Receiver Operating Characteristic (ROC) curve for each model. The Area Under the Curve (AUC) provides a single metric to compare overall discriminative power, where a higher AUC indicates better performance.
+
 ![ROC Visual](images/ROC-Curve.png)
+
 The ROC curve illustrates the trade-off between the True Positive Rate (TPR) and False Positive Rate (FPR) at various threshold settings.
 The Area Under the Curve (AUC) is a crucial single metric: closer to 1.0 indicates a better ability to distinguish between positive and negative classes (Approved vs. Rejected loans).
 Models with curves closer to the top-left corner and higher AUC values are generally considered more effective at classifying loan approvals.
