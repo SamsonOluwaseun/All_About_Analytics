@@ -1,0 +1,19 @@
+[
+    {
+        "source_url" : "Shopping_Structured_Data/Orders_Data.csv",
+        "sink_folder" : "ShoppingMart_Bronze",
+        "sink_file" : "ShoppingMart_orders.csv"
+    },
+    {
+         "source_url" : "Shopping_Structured_Data/customers.csv",
+        "sink_folder" : "ShoppingMart_Bronze",
+        "sink_file" : "ShoppingMart_customers.csv"
+
+    },
+    {
+        "source_url" : "Shopping_Structured_Data/products.csv",
+        "sink_folder" : "ShoppingMart_Bronze",
+        "sink_file" : "ShoppingMart_products.csv"
+
+    }
+]
