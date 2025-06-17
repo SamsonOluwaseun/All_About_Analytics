@@ -1,18 +1,18 @@
 [
     {
-        "source_url" : "Shopping_Structured_Data/Orders_Data.csv",
-        "sink_folder" : "ShoppingMart_Bronze_orders",
+        "source_url" : "refs/heads/main/SQL/Microsoft_Fabrics_Lakehouse/Shopping_Structured_Data/Orders_Data.csv",
+        "sink_folder" : "Bronze_Orders",
         "sink_file" : "ShoppingMart_orders.csv"
     },
     {
-         "source_url" : "Shopping_Structured_Data/customers.csv",
-        "sink_folder" : "ShoppingMart_Bronze_customers",
+         "source_url" : "refs/heads/main/SQL/Microsoft_Fabrics_Lakehouse/Shopping_Structured_Data/customers.csv",
+        "sink_folder" : "Bronze_Customers",
         "sink_file" : "ShoppingMart_customers.csv"
 
     },
     {
-        "source_url" : "Shopping_Structured_Data/products.csv",
-        "sink_folder" : "ShoppingMart_Bronze_products",
+        "source_url" : "refs/heads/main/SQL/Microsoft_Fabrics_Lakehouse/Shopping_Structured_Data/products.csv",
+        "sink_folder" : "Bronze_Products",
         "sink_file" : "ShoppingMart_products.csv"
 
     }
