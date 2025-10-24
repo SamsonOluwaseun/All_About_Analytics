@@ -39,7 +39,7 @@ This project demonstrates an end-to-end Customer Master Data Management (CMDM) s
 
 ## 3. How to Run the Project (Google Colab)
 
-1.  Open the **`Customer_MDM_Project.ipynb`** file (or the current Python script) in Google Colab.
+1.  Open the **`Customer_MDM.ipynb`** file (or the current Python script) in Google Colab.
 2.  Run all cells sequentially.
 3.  Review the `Final Cross-Reference Table` in Section 5.
 4.  Test the lookup function in Section 6 with the generated `Master_ID`s (e.g., `CMD_001`, `CMD_003`).
