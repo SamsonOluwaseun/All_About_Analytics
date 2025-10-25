@@ -1,0 +1,28 @@
+# requirements.txt
+# Python dependencies for Customer Master Data Management (CMDM) Prototype
+
+# Core Data Processing
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Data Matching & Cleansing
+fuzzywuzzy>=0.18.0
+python-Levenshtein>=0.21.0
+regex>=2023.6.3
+
+# Visualization
+matplotlib>=3.8.0
+seaborn>=0.13.0
+
+# Notebook Environment
+jupyter>=1.0.0
+notebook>=7.0.0
+ipython>=8.15.0
+
+# Optional Utilities
+openpyxl>=3.1.0       # For reading/writing Excel files
+pyyaml>=6.0.0         # For configuration and data templates
+
+# (Optional) If you plan to build a lightweight API for syndication testing
+fastapi>=0.115.0
+uvicorn>=0.30.0
