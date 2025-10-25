@@ -157,6 +157,7 @@ from fuzzywuzzy import fuzz
 score = fuzz.token_set_ratio("John Smith", "Jon Smyth")
 print(f"Matching score: {score}")
 
+```
 🧮 This example illustrates how simple Python logic can detect potential duplicates and link customer records before implementing enterprise MDM platforms.
 
 # 📜 MIT License
