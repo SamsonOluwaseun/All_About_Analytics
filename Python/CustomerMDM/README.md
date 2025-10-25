@@ -91,7 +91,8 @@ This Python notebook simulates a **registry-style MDM hub**, following a structu
 
 ```python
 # Example Lookup
-lookup_source_ids_by_master_id('CMD_003') ```
+lookup_source_ids_by_master_id('CMD_003')
+```
 
 ## 6. 📺 Reference Insight
 
