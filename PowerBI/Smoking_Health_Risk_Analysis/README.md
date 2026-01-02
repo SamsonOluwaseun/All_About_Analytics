@@ -38,6 +38,9 @@ The population represents a **high-risk demographic**, where smoking acts as a s
 - **Chiclet Slicer (Custom Visual)** for image-based filtering
 
 ## Key Insights
+<div align="center">
+  <img src="visuals/SmokingHealth_image.png" alt="Smoking Health Risk Dashboard" width="80%">
+</div>
 ### Population Health Baseline
 The dataset reflects an aging population with elevated BMI levels, placing many individuals at **increased baseline health risk**. This makes smoking behavior especially critical when assessing long-term damage.
 
