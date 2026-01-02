@@ -94,9 +94,10 @@ SWITCH(
 ## Powerful Business & Health Insights
 
   <iframe title="Smoking Health Analytics" width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiYTYwZjkxZmMtYjkyNC00MTIxLTk0ZTAtN2NkN2VkYmM4NjhiIiwidCI6IjVlZGQyZmE1LTYxNDYtNDU4My1hMWIzLTM5NmNlNjdjNTI1YiIsImMiOjF9&embedImagePlaceholder=true" frameborder="0" allowFullScreen="true"></iframe>
-  
+  src="visuals/SmokingHealth_image.png"
 <div align="center">
-  <img src="visuals/SmokingHealth_image.png" alt="Smoking Health Risk Dashboard" width="80%">
+  https://app.powerbi.com/view?r=eyJrIjoiYTYwZjkxZmMtYjkyNC00MTIxLTk0ZTAtN2NkN2VkYmM4NjhiIiwidCI6IjVlZGQyZmE1LTYxNDYtNDU4My1hMWIzLTM5NmNlNjdjNTI1YiIsImMiOjF9&embedImagePlaceholder=true
+  <img   src= "https://app.powerbi.com/view?r=eyJrIjoiYTYwZjkxZmMtYjkyNC00MTIxLTk0ZTAtN2NkN2VkYmM4NjhiIiwidCI6IjVlZGQyZmE1LTYxNDYtNDU4My1hMWIzLTM5NmNlNjdjNTI1YiIsImMiOjF9&embedImagePlaceholder=true" alt="Smoking Health Risk Dashboard" width="80%">
 </div>
 
 ### Smoking Prevalence is Alarmingly High — A Majority Risk Factor
