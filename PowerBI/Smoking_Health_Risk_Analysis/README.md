@@ -28,7 +28,8 @@ The population represents a **high-risk demographic**, where smoking acts as a s
 ## Data Modeling & Logic
 ### Measures (DAX)
 - Average Age (DAX Measure)
-  ```
+  
+```
 vs Avg Age = 
 VAR _CurrentAge = AVERAGE(health_dataset[Age])
 VAR _OverallAge = CALCULATE(AVERAGE(health_dataset[Age]), ALL(health_dataset))
@@ -41,7 +42,8 @@ SWITCH(
     _Diff < 0, UNICHAR(9660) & " " & FORMAT(_CurrentAge, "0.0"),
     FORMAT(_CurrentAge, "0.0")
 )
-  ```
+```
+
 - Average BMI (DAX Measure)
 ```
 vs Avg BMI = 
@@ -57,6 +59,7 @@ SWITCH(
     FORMAT(_CurrentBMI, "0.0")
 )
 ```
+
 - Age Group (DAX Column)
 ```
 Age Group = 
