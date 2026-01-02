@@ -1,3 +1,5 @@
+# 🏥 Your First Data Health Analytics Project: From Raw Data to Production Analytics
+
 Project is an **interactive Power BI healthcare dashboard** designed to analyze the **health risks associated with smoking**. It helps users explore how smoking behavior relates to **organ damage**, **smoking duration**, **daily cigarette intake**, and key health indicators such as **BMI, cholesterol level, and blood pressure risk**.
 
 The dashboard is built with a clean healthcare-style UI and uses **dynamic organ images** to visually represent **Healthy vs Damaged** conditions across major organs (Heart, Lungs, Liver, Kidney, and Body).
