@@ -27,8 +27,50 @@ The population represents a **high-risk demographic**, where smoking acts as a s
 
 ## Data Modeling & Logic
 ### Measures (DAX)
-- Average Age
-- Average BMI
+- Average Age (DAX Measure)
+  ```
+vs Avg Age = 
+VAR _CurrentAge = AVERAGE(health_dataset[Age])
+VAR _OverallAge = CALCULATE(AVERAGE(health_dataset[Age]), ALL(health_dataset))
+VAR _Diff = _CurrentAge - _OverallAge
+
+RETURN
+SWITCH(
+    TRUE(),
+    _Diff > 0, UNICHAR(9650) & " " & FORMAT(_CurrentAge, "0.0"),
+    _Diff < 0, UNICHAR(9660) & " " & FORMAT(_CurrentAge, "0.0"),
+    FORMAT(_CurrentAge, "0.0")
+)
+  ```
+- Average BMI (DAX Measure)
+```
+vs Avg BMI = 
+VAR _CurrentBMI = AVERAGE(health_dataset[BMI])
+VAR _OverallBMI = CALCULATE(AVERAGE(health_dataset[BMI]), ALL(health_dataset))
+VAR _Diff = _CurrentBMI - _OverallBMI
+
+RETURN
+SWITCH(
+    TRUE(),
+    _Diff > 0, UNICHAR(9650) & " " & FORMAT(_CurrentBMI, "0.0"),
+    _Diff < 0, UNICHAR(9660) & " " & FORMAT(_CurrentBMI, "0.0"),
+    FORMAT(_CurrentBMI, "0.0")
+)
+```
+- Age Group (DAX Column)
+```
+Age Group = 
+SWITCH(
+    TRUE(),
+    health_dataset[Age] <= 28, "18–28",
+    health_dataset[Age] <= 38, "29–38",
+    health_dataset[Age] <= 48, "39–48",
+    health_dataset[Age] <= 58, "49–58",
+    health_dataset[Age] <= 68, "59–68",
+    "69+"
+)
+```
+
 - Total Patients (count of Patient ID)
 
 ## Tools & Technologies
