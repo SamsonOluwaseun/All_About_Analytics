@@ -173,50 +173,6 @@ SET TBLPROPERTIES (
   <img src="visuals/img1-medallion.png" alt="Medallion Architecture" width="80%">
 </div>
 
-
-**Technology Stack:**
-- **Unity Catalog** → Data governance and discovery
-- **Delta Lake** → Reliable storage with ACID transactions
-- **Apache Spark** → Distributed processing engine
-- **SQL + Python** → Analytics and transformation logic
-
-```mermaid
-graph LR
-    A[Raw Data<br/>XML/JSON/CSV] --> B[Bronze Layer<br/>Raw Storage]
-    B --> C[Silver Layer<br/>Cleaned Data] 
-    C --> D[Gold Layer<br/>Analytics Ready]
-    D --> E[Dashboards & AI]
-    
-    F[Unity Catalog<br/>Governance] --> B
-    F --> C  
-    F --> D
-    
-    G[Delta Lake<br/>ACID Storage] --> B
-    G --> C
-    G --> D
-```
-
-## 💡 Why This Approach Works
-
-**Real-world applicable:** The patterns you learn here scale from personal projects to enterprise data platforms handling petabytes. Companies like Netflix, Databricks, and Uber use these exact architectural patterns.
-
-**Portfolio-ready:** You'll have a complete end-to-end project demonstrating modern data engineering skills that hiring managers want to see. The project shows you can handle the full data lifecycle from ingestion to analytics.
-
-**Foundation for AI:** This tutorial builds the data foundation needed for machine learning and AI projects. Clean, well-structured data in your Gold layer is exactly what ML models need.
-
-<!-- ## 🎬 Video Tutorial
-
-This repository accompanies our comprehensive YouTube tutorial series. Part 1 covers building the complete lakehouse architecture, while Part 2 extends into Power BI integration and AI assistant development. *Coming soon!*
--->
-## 🌟 What's Next?
-
-After mastering this tutorial, you'll have the foundation to tackle any data engineering challenge. The skills transfer directly to processing financial transactions, IoT sensor data, customer analytics, or real-time streaming data. Consider extending your project with Power BI dashboards or building AI agents for conversational analytics.
-
-
-<div align="center">
-  <img src="visuals/img3-whatsnext.png" alt="Learning Journey" width="80%">
-</div>
-
 ## Connecting Databricks to PowerBI
 Follow this step-by-step guide to connect Power BI Desktop to your Databricks SQL Warehouse using the native connector. This enables seamless querying of tables in Unity Catalog (e.g., health_data.gold as shown).
 
@@ -276,6 +232,35 @@ Once connected, you can build powerful dashboards directly on your lakehouse dat
 
 🔗 **[View the interactive Power BI dashboard](https://app.powerbi.com/view?r=eyJrIjoiZDQ4YWQ0MGMtODM2ZC00MWQ4LWI4NTAtMzkwNjQ5ZDA4MmRjIiwidCI6IjVlZGQyZmE1LTYxNDYtNDU4My1hMWIzLTM5NmNlNjdjNTI1YiIsImMiOjF9)**
 
+##### Some DAX Functions
+- **Current Body Mass** based on selected Month Filters or the Maximum current date
+
+```
+Current Body Mass = 
+VAR LatestDate = 
+    CALCULATE(
+        MAX(daily_health_summary[activity_date]),
+        daily_health_summary[metric_name] = "BodyMass"
+    )
+
+VAR Result = 
+    CALCULATE(
+        AVERAGE(daily_health_summary[avg_value]),  // Use AVERAGE in case of multiple rare measurements on the same day
+        daily_health_summary[metric_name] = "BodyMass",
+        daily_health_summary[activity_date] = LatestDate
+    )
+
+RETURN
+    Result
+```
+- **Average Body Temprature**
+
+```
+  Avg Body Temp = 
+CALCULATE(AVERAGE('daily_health_summary'[avg_value]), 'daily_health_summary'[metric_name] = "BodyTemperature")
+
+```
+
 #### Key Insights And Recommendation
 
 Looking at this 2024 data it shows a consistent active with an average of **~6,280** steps per day and excellent resting heart rate around **48–50 bpm**, which puts you in great cardiovascular shape.
@@ -287,6 +272,45 @@ Looking at this 2024 data it shows a consistent active with an average of **~6,2
 - Consider adding strength training if calories burned plateau mid-year.
 - Keep tracking – your data shows consistency drives results. Set a 2026 goal of 7,000 avg steps and monitor HRV for recovery.
 
+**Technology Stack:**
+- **Unity Catalog** → Data governance and discovery
+- **Delta Lake** → Reliable storage with ACID transactions
+- **Apache Spark** → Distributed processing engine
+- **SQL + Python** → Analytics and transformation logic
+- **PowerBI** → Enterprise grade analytics with DAX measures
+
+```mermaid
+graph LR
+    A[Raw Data<br/>XML/JSON/CSV] --> B[Bronze Layer<br/>Raw Storage]
+    B --> C[Silver Layer<br/>Cleaned Data] 
+    C --> D[Gold Layer<br/>Analytics Ready]
+    D --> E[Dashboards & AI]
+    
+    F[Unity Catalog<br/>Governance] --> B
+    F --> C  
+    F --> D
+    
+    G[Delta Lake<br/>ACID Storage] --> B
+    G --> C
+    G --> D
+```
+
+## 💡 Why This Approach Works
+
+**Real-world applicable:** The patterns you learn here scale from personal projects to enterprise data platforms handling petabytes. Companies like Netflix, Databricks, and Uber use these exact architectural patterns.
+
+**Portfolio-ready:** You'll have a complete end-to-end project demonstrating modern data engineering skills that hiring managers want to see. The project shows you can handle the full data lifecycle from ingestion to analytics.
+
+**Foundation for AI:** This tutorial builds the data foundation needed for machine learning and AI projects. Clean, well-structured data in your Gold layer is exactly what ML models need.
+
+## 🌟 What's Next?
+
+After mastering this tutorial, you'll have the foundation to tackle any data engineering challenge. The skills transfer directly to processing financial transactions, IoT sensor data, customer analytics, or real-time streaming data. Consider extending your project with Power BI dashboards or building AI agents for conversational analytics.
+
+
+<div align="center">
+  <img src="visuals/img3-whatsnext.png" alt="Learning Journey" width="80%">
+</div>
 ## 🤝 Contributing
 
 Found ways to improve the tutorial? Fork the repository, create a feature branch, and submit a pull request. Contributions help make this resource better for everyone learning data engineering.
@@ -303,3 +327,8 @@ Let’s stay in touch and keep learning together!
 ⭐ **Found this helpful?** Star the repo and share with developers interested in data & AI!
 
 **Tags**: `first-data-project` `data-engineering` `databricks` `apache-spark` `delta-lake` `unity-catalog` `medallion-architecture` `lakehouse` `tutorial` `beginner-friendly`
+
+<!-- ## 🎬 Video Tutorial
+
+This repository accompanies our comprehensive YouTube tutorial series. Part 1 covers building the complete lakehouse architecture, while Part 2 extends into Power BI integration and AI assistant development. *Coming soon!*
+-->
