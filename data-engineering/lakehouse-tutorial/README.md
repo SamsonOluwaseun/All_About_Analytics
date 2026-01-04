@@ -217,16 +217,57 @@ After mastering this tutorial, you'll have the foundation to tackle any data eng
   <img src="visuals/img3-whatsnext.png" alt="Learning Journey" width="80%">
 </div>
 
-## Connecting to PowerBI
-#### Getting Databricks Credentials
+## Connecting Databricks to PowerBI
+Follow this step-by-step guide to connect Power BI Desktop to your Databricks SQL Warehouse using the native connector. This enables seamless querying of tables in Unity Catalog (e.g., health_data.gold as shown).
+
+#### Step 1: Get Connection Details from Databricks
+1. Navigate to **SQL Warehouses** in the Databricks sidebar.
+2. Select your warehouse (e.g., Serverless Starter Warehouse).
+3. Go to the **Connection details** tab.
+
+You will find:
+- **Server hostname** → e.g., dbc-7a... (copy the full hostname)
+- **HTTP path** → e.g., /sql/1.0/warehouses/b2... (copy exactly)
+
+Databricks SQL Warehouse Connection Details
+(Screenshot showing Server hostname and HTTP path)
+
 <div align="center">
   <img src="visuals/Databricks Connection Credential.png" alt="Databricks Connection Credential" width="80%">
 </div>
 
-#### Setting up connection in PowerBI
+#### Step 2: Configure the Connection in Power BI Desktop
+1. Open **Power BI Desktop**.
+2. Click **Get Data** → Search for "**Databricks**" or "**Azure Databricks**".
+3. Select the **Databricks** connector (or Azure Databricks if on Azure) → **Connect**.
+
+Fill in the dialog exactly as shown:
+- **Server Hostname:** Paste the hostname (e.g., dbc-7a...)
+- **HTTP Path:** Paste the full path (e.g., /sql/1.0/warehouses/b2...)
+
+**Advanced options** (recommended for Unity Catalog):
+-- **Default catalog:** health_data (or your catalog name)
+-- **Database:** gold (your schema containing the gold-layer tables)
+
+Leave other fields as default unless needed.
+Power BI Databricks Connection Dialog
+(Screenshot of the filled Databricks connection window with catalog health_data and database gold)
+
 <div align="center">
   <img src="visuals/PowerBI Connection.png" alt="PowerBI Connection" width="80%">
 </div>
+
+4. Click **OK**.
+5. Authenticate using **OAuth** (recommended) or a **Personal Access Token** (PAT) if required.
+6. In the Navigator, browse your catalog → schema → tables.
+7. Select tables (e.g., gold-layer health metrics) and load or use **DirectQuery** for live data.
+
+##### Tips for Success
+- Use **DirectQuery** mode for real-time analytics on large Delta Lake tables.
+- Ensure your Databricks user has **CAN USE** permissions on the warehouse and **SELECT** on the tables.
+- For easier setup, use **Databricks Partner Connect** → Power BI tile to download a pre-configured connection file (available in Premium workspaces).
+
+Once connected, you can build powerful dashboards directly on your lakehouse data!
 
 #### Final PowerBI Report using Databricks Gold layer dataset
 <div align="center">
