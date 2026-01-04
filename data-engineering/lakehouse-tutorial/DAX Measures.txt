@@ -1,0 +1,42 @@
+
+MEASURES: 
+
+Current Body Mass = 
+VAR LatestDate = 
+    CALCULATE(
+        MAX(daily_health_summary[activity_date]),
+        daily_health_summary[metric_name] = "BodyMass"
+    )
+
+VAR Result = 
+    CALCULATE(
+        AVERAGE(daily_health_summary[avg_value]),  // Use AVERAGE in case of multiple rare measurements on the same day
+        daily_health_summary[metric_name] = "BodyMass",
+        daily_health_summary[activity_date] = LatestDate
+    )
+
+RETURN
+    Result
+
+Avg Body Temp = 
+CALCULATE(AVERAGE('daily_health_summary'[avg_value]), 'daily_health_summary'[metric_name] = "BodyTemperature")
+
+Avg Daily Steps = AVERAGE('daily_health_summary'[total_value])  // For StepCount rows only, use filter in visual
+
+Avg FlightClimbed = 
+CALCULATE(AVERAGE('daily_health_summary'[avg_value]), 'daily_health_summary'[metric_name] = "FlightsClimbed")
+
+Avg Resting HR = 
+CALCULATE(AVERAGE('daily_health_summary'[avg_value]), 'daily_health_summary'[metric_name] = "HeartRate")
+
+Selected Metric Daily Avg = 
+VAR SelectedMetric = SELECTEDVALUE('daily_health_summary'[metric_name])
+RETURN CALCULATE(AVERAGE('daily_health_summary'[avg_value]), 'daily_health_summary'[metric_name] = SelectedMetric)
+
+Total Steps = CALCULATE(SUM('daily_health_summary'[total_value]), 'daily_health_summary'[metric_name] = "StepCount")
+
+DAX Columns
+
+Month Name = FORMAT([activity_date], "MMMM")
+
+Day Name = FORMAT([activity_date], "DDDD")
