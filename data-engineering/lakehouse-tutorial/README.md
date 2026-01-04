@@ -1,4 +1,4 @@
-# 🏥 Your First Data Engineering Project: From Raw Data to Production Analytics
+# 🏥 Fitness Record Data Engineering Project: From Raw Data to Production Analytics
 
 **Build your first complete data lakehouse from scratch** - completely free! This tutorial uses Apple Health data as an example, but the skills you learn apply to any data engineering project. Perfect for developers looking to break into data & AI.
 
