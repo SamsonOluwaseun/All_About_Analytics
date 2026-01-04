@@ -217,6 +217,28 @@ After mastering this tutorial, you'll have the foundation to tackle any data eng
   <img src="visuals/img3-whatsnext.png" alt="Learning Journey" width="80%">
 </div>
 
+## Connecting to PowerBI
+<div align="center">
+  <img src="visuals/Databricks Connection Credential.png" alt="Databricks Connection Credential" width="80%">
+</div>
+
+<div align="center">
+  <img src="visuals/PowerBI Connection.png" alt="PowerBI Connection" width="80%">
+</div>
+
+<div align="center">
+  <img src="visuals/Completed Report.png" alt="PowerBI Completed Report" width="80%">
+</div>
+🔗 **[View the interactive Power BI dashboard](https://app.powerbi.com/view?r=eyJrIjoiZDQ4YWQ0MGMtODM2ZC00MWQ4LWI4NTAtMzkwNjQ5ZDA4MmRjIiwidCI6IjVlZGQyZmE1LTYxNDYtNDU4My1hMWIzLTM5NmNlNjdjNTI1YiIsImMiOjF9)**
+
+Looking at this 2024 data it shows a consistent active with an average of **~6,280** steps per day and excellent resting heart rate around **48–50 bpm**, which puts you in great cardiovascular shape.
+**Strengths:**
+- Activity peaks on weekends and Mondays → you're crushing it with weekend hikes or workouts and starting the week strong!
+- All metrics in normal range, stable weight, good HRV → strong recovery and low stress on the body.
+**Opportunities:**
+- Flights climbed average ~15/day – aim for 20+ to boost cardio further.
+- Consider adding strength training if calories burned plateau mid-year.
+- Keep tracking – your data shows consistency drives results. Set a 2026 goal of 7,000 avg steps and monitor HRV for recovery.
 
 ## 🤝 Contributing
 
