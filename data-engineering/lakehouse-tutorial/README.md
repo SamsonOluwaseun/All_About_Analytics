@@ -218,18 +218,24 @@ After mastering this tutorial, you'll have the foundation to tackle any data eng
 </div>
 
 ## Connecting to PowerBI
+#### Getting Databricks Credentials
 <div align="center">
   <img src="visuals/Databricks Connection Credential.png" alt="Databricks Connection Credential" width="80%">
 </div>
 
+#### Setting up connection in PowerBI
 <div align="center">
   <img src="visuals/PowerBI Connection.png" alt="PowerBI Connection" width="80%">
 </div>
 
+#### Final PowerBI Report using Databricks Gold layer dataset
 <div align="center">
   <img src="visuals/Completed Report.png" alt="PowerBI Completed Report" width="80%">
 </div>
+
 🔗 **[View the interactive Power BI dashboard](https://app.powerbi.com/view?r=eyJrIjoiZDQ4YWQ0MGMtODM2ZC00MWQ4LWI4NTAtMzkwNjQ5ZDA4MmRjIiwidCI6IjVlZGQyZmE1LTYxNDYtNDU4My1hMWIzLTM5NmNlNjdjNTI1YiIsImMiOjF9)**
+
+#### Key Insights And Recommendation
 
 Looking at this 2024 data it shows a consistent active with an average of **~6,280** steps per day and excellent resting heart rate around **48–50 bpm**, which puts you in great cardiovascular shape.
 **Strengths:**
