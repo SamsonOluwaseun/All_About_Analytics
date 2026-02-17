@@ -7,7 +7,7 @@ This documentation emphasizes:
 - **Governance Benefits:** How this approach enhances data quality, compliance, security, and AI readiness.
 - **Tool Recommendations:** Practical tools for each stage.
 
-Feel free to clone this repo, contribute, or use it as a template for your own projects. Diagrams are described in text (use Draw.io to recreate them). For real-world implementation, integrate with tools like Microsoft Purview for governance.
+Feel free to clone this repo, contribute, or use it as a template for your own projects. Diagrams are designed with mermaid (use Draw.io to recreate them). For real-world implementation, integrate with tools like Microsoft Purview for governance.
 
 ## Why Data Modeling is Foundational for Enterprise Data Platforms
 
