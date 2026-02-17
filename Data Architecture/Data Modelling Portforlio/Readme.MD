@@ -89,9 +89,10 @@ Abstract view of business entities and relationships. No tech details.
 - Entities: Customer, Account, Transaction, Loan.
 - Relationships: A Customer "owns" Accounts; Accounts "have" Transactions; Loans "link to" Accounts.
 
-<!-- Text Diagram (Recreate in Draw.io):
+<!--- Text Diagram (Recreate in Draw.io):
 textCustomer -- owns --> Account -- has --> Transaction
-Customer -- applies for --> Loan -- secured by --> Account -->
+Customer -- applies for --> Loan -- secured by --> Account 
+--->
 
 ```mermaid
 graph LR
