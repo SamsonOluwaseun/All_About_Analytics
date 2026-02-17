@@ -98,7 +98,8 @@ graph LR
     Customer -->|owns| Account
     Account -->|has| Transaction
     Customer -->|applies for| Loan
-    Loan -->|secured by| Account ```
+    Loan -->|secured by| Account 
+```
 
 Intermediate/Advanced: Adds business rules (e.g., "A Customer must have at least one Account"). Supports governance by defining core concepts reusable in AI (e.g., customer segmentation).
 
@@ -113,6 +114,7 @@ Banking Example:
 <!--Text Diagram:
 textCustomer (ID, Name, Address, DOB) --1:N--> Account (ID, Type, Balance, CustomerID)
 Account --1:N--> Transaction (ID, Amount, Date, AccountID) -->
+
 
 ```mermaid
 erDiagram
@@ -138,7 +140,8 @@ erDiagram
         decimal Amount
         date Date
         int AccountID
-    }```
+    }
+```
 
 Advanced: Includes normalization (e.g., 3NF) for integrity; governs data flows in warehouses.
 
@@ -165,6 +168,7 @@ textTimeDim
 LoanFacts <-- CustomerDim
              |
            AccountDim -->
+
 ```mermaid
 graph TD
     LoanFacts((LoanFacts))
