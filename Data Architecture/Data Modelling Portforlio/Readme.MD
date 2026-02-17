@@ -177,7 +177,6 @@ graph TD
     CustomerDim[CustomerDim] --> LoanFacts
     AccountDim[AccountDim] --> LoanFacts 
 ```
-
 Advanced: Optimizes queries (e.g., OLAP for fraud trends); governs BI reports.
 
 5. **Data Vault Model (Advanced: Scalable, Auditable)**
