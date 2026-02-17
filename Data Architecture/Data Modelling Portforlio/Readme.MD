@@ -92,11 +92,14 @@ Abstract view of business entities and relationships. No tech details.
 Text Diagram (Recreate in Draw.io):
 textCustomer -- owns --> Account -- has --> Transaction
 Customer -- applies for --> Loan -- secured by --> Account
-graph TD
-    Customer[Start] --> Account
-    Account -->|Has| Transaction
-    Customer -->|Applies For| Loan
-    Account --> |Secured| Loan
+
+```mermaid
+graph LR
+    Customer -->|owns| Account
+    Account -->|has| Transaction
+    Customer -->|applies for| Loan
+    Loan -->|secured by| Account
+```
 
 
 
