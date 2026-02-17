@@ -89,9 +89,9 @@ Abstract view of business entities and relationships. No tech details.
 - Entities: Customer, Account, Transaction, Loan.
 - Relationships: A Customer "owns" Accounts; Accounts "have" Transactions; Loans "link to" Accounts.
 
-Text Diagram (Recreate in Draw.io):
+<!-- Text Diagram (Recreate in Draw.io):
 textCustomer -- owns --> Account -- has --> Transaction
-Customer -- applies for --> Loan -- secured by --> Account
+Customer -- applies for --> Loan -- secured by --> Account -->
 
 ```mermaid
 graph LR
@@ -100,51 +100,88 @@ graph LR
     Customer -->|applies for| Loan
     Loan -->|secured by| Account
 ```
-
-
-
 Intermediate/Advanced: Adds business rules (e.g., "A Customer must have at least one Account"). Supports governance by defining core concepts reusable in AI (e.g., customer segmentation).
-2. Logical Model (Intermediate: Structured Details)
+
+2. **Logical Model (Intermediate: Structured Details)**
 Adds attributes, keys, and constraints. Platform-agnostic.
 Banking Example:
 
-Customer: ID (PK), Name, Address, DOB.
-Account: ID (PK), Type (Checking/Savings), Balance, CustomerID (FK).
-Relationships: One-to-Many (Customer to Accounts).
+- Customer: ID (PK), Name, Address, DOB.
+- Account: ID (PK), Type (Checking/Savings), Balance, CustomerID (FK).
+- Relationships: One-to-Many (Customer to Accounts).
 
-Text Diagram:
+<!--Text Diagram:
 textCustomer (ID, Name, Address, DOB) --1:N--> Account (ID, Type, Balance, CustomerID)
-Account --1:N--> Transaction (ID, Amount, Date, AccountID)
+Account --1:N--> Transaction (ID, Amount, Date, AccountID) -->
+
+```mermaid
+erDiagram
+    Customer ||--o{ Account : owns
+    Account  ||--o{ Transaction : has
+
+    Customer {
+        int ID
+        string Name
+        string Address
+        date DOB
+    }
+
+    Account {
+        int ID
+        string Type
+        decimal Balance
+        int CustomerID
+    }
+
+    Transaction {
+        int ID
+        decimal Amount
+        date Date
+        int AccountID
+    }
+```
+
 Advanced: Includes normalization (e.g., 3NF) for integrity; governs data flows in warehouses.
-3. Physical Model (Advanced: Implementation-Ready)
+
+3. **Physical Model (Advanced: Implementation-Ready)**
 Database-specific: Tables, columns, indexes, data types.
 Banking Example (SQL-like):
 
-Table: Customers (CustomerID INT PK, FullName VARCHAR(100), Address TEXT, DOB DATE).
-Indexes: On CustomerID for fast queries.
-Constraints: Balance >= 0.
+- Table: Customers (CustomerID INT PK, FullName VARCHAR(100), Address TEXT, DOB DATE).
+- Indexes: On CustomerID for fast queries.
+- Constraints: Balance >= 0.
 
 Governance: Enforces security (e.g., encrypted columns for PII).
-4. Dimensional Model (Star Schema) (Intermediate: Analytics-Focused)
+
+4. **Dimensional Model (Star Schema) (Intermediate: Analytics-Focused)**
 For warehouses; facts (measures) and dimensions (descriptions).
 Banking Example (Loan Analysis):
 
-Fact Table: LoanFacts (LoanID, CustomerID, Amount, InterestRate, ApprovalDate).
-Dimension Tables: CustomerDim (CustomerID, Name, CreditScore), TimeDim (Date, Month, Year).
+- Fact Table: LoanFacts (LoanID, CustomerID, Amount, InterestRate, ApprovalDate).
+- Dimension Tables: CustomerDim (CustomerID, Name, CreditScore), TimeDim (Date, Month, Year).
 
-Text Star Schema:
+<!-- Text Star Schema:
 textTimeDim
              |
 LoanFacts <-- CustomerDim
              |
-           AccountDim
+           AccountDim -->
+```mermaid
+graph TD
+    LoanFacts((LoanFacts))
+
+    TimeDim[TimeDim] --> LoanFacts
+    CustomerDim[CustomerDim] --> LoanFacts
+    AccountDim[AccountDim] --> LoanFacts
+```
 Advanced: Optimizes queries (e.g., OLAP for fraud trends); governs BI reports.
-5. Data Vault Model (Advanced: Scalable, Auditable)
+
+5. **Data Vault Model (Advanced: Scalable, Auditable)**
 Hubs (entities), Links (relationships), Satellites (attributes). Ideal for banking audits.
 Banking Example:
 
-Hub: Customer_Hub (CustomerHashKey, LoadDate, Source).
-Link: Customer_Account_Link (LinkHashKey, CustomerHashKey, AccountHashKey).
-Satellite: Customer_Sat (CustomerHashKey, Name, Address, EffectiveDate).
+- Hub: Customer_Hub (CustomerHashKey, LoadDate, Source).
+- Link: Customer_Account_Link (LinkHashKey, CustomerHashKey, AccountHashKey).
+- Satellite: Customer_Sat (CustomerHashKey, Name, Address, EffectiveDate).
 
-Benefits: Handles changes (e.g., address updates) with history; governs compliance (e.g., transaction audits for AML).
+**Benefits:** Handles changes (e.g., address updates) with history; governs compliance (e.g., transaction audits for AML).
