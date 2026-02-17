@@ -91,7 +91,7 @@ Abstract view of business entities and relationships. No tech details.
 
 <!-- Text Diagram (Recreate in Draw.io):
 <!-- textCustomer -- owns --> Account -- has --> Transaction
-<!-- Customer -- applies for --> Loan -- secured by --> Account 
+%%  Customer -- applies for --> Loan -- secured by --> Account 
 
 
 ```mermaid
