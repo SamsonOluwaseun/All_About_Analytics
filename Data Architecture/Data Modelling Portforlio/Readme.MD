@@ -175,7 +175,8 @@ graph TD
 
     TimeDim[TimeDim] --> LoanFacts
     CustomerDim[CustomerDim] --> LoanFacts
-    AccountDim[AccountDim] --> LoanFacts ```
+    AccountDim[AccountDim] --> LoanFacts 
+```
 
 Advanced: Optimizes queries (e.g., OLAP for fraud trends); governs BI reports.
 
