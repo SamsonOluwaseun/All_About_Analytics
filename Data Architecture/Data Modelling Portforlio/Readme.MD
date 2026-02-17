@@ -98,8 +98,8 @@ graph LR
     Customer -->|owns| Account
     Account -->|has| Transaction
     Customer -->|applies for| Loan
-    Loan -->|secured by| Account
-```
+    Loan -->|secured by| Account ```
+
 Intermediate/Advanced: Adds business rules (e.g., "A Customer must have at least one Account"). Supports governance by defining core concepts reusable in AI (e.g., customer segmentation).
 
 2. **Logical Model (Intermediate: Structured Details)**
@@ -138,8 +138,7 @@ erDiagram
         decimal Amount
         date Date
         int AccountID
-    }
-```
+    }```
 
 Advanced: Includes normalization (e.g., 3NF) for integrity; governs data flows in warehouses.
 
@@ -172,8 +171,8 @@ graph TD
 
     TimeDim[TimeDim] --> LoanFacts
     CustomerDim[CustomerDim] --> LoanFacts
-    AccountDim[AccountDim] --> LoanFacts
-```
+    AccountDim[AccountDim] --> LoanFacts ```
+
 Advanced: Optimizes queries (e.g., OLAP for fraud trends); governs BI reports.
 
 5. **Data Vault Model (Advanced: Scalable, Auditable)**
