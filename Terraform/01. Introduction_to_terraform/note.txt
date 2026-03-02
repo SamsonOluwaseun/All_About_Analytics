@@ -1,0 +1,38 @@
+Installing Terraform
+1. Download binary (Zipfile) form here: https://www.terraform.io/downloads.html
+2. unzip the file downloaded and rename to terraform, 
+3. cut the file and paste in your program file
+4. Add the installation folder in your PATH (C:\Program Files\terraform)
+5. confirm installation on cmd with terraform --version (Terraform v1.14.6)
+
+Key Terraform Commands
+1. Init -- Get me the providers I need
+2. Plan-- What am I about to do
+3. Apply -- Do what is in the tf files
+4. Destroy -- Remover everything defined in the tf files
+5. fmt -- formart your entire terraform scripts
+
+Setup
+Create a service account user in your cloud platform
+e.g AWS, GCP or Azure. Under IAM
+Export the access as a JSON file
+Install HashiCorp Terraform on vscode.
+used code . to start vscode from cli
+
+To specify your credentials location
+provider "google" {
+  # Configuration options
+  credentials = file("./keys/my-creds.json")
+  project = "ai-projects-280725"
+  region  = "us-central1"
+}
+or use on cli if you have Google cli installe
+gcloud default auth-login
+
+or 
+Linux
+export GOOGLE_CREDENTIALS='C:/Users/Dell/My Drive/GCP Learning 2026/Introduction to Terraform/keys/my-creds.json'
+windows
+set GOOGLE_CREDENTIALS="C:/Users/Dell/My Drive/GCP Learning 2026/Introduction to Terraform/keys/my-creds.json"
+
+echo %GOOGLE_CREDENTIALS%

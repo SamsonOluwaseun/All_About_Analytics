@@ -1,0 +1,26 @@
+# ignore all JSON files
+*.json
+
+# Local .terraform directories
+**/.terraform/*
+
+# Crash logs
+crash.log
+
+# Terraform state files
+*.tfstate
+*.tfstate.*
+ 
+# Terraform plan outputs
+*.tfplan
+
+# CLI configuration files
+.terraformrc
+terraform.rc
+
+# Sensitive variable files
+*.tfvars
+*.tfvars.json
+
+# Lock file (if you prefer not to track it)
+.terraform.lock.hcl
