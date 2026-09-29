@@ -1,6 +1,6 @@
 # AWS Resilient Healthcare Platform
 
-> **Scenario:** A regional NHS Trust's patient portal collapsed during a national vaccination campaign. Traffic tripled in two hours. Appointment bookings failed, clinical staff lost access to patient records, and the system was down long enough to disrupt an entire day of planned care. This architecture prevents it from happening again.
+> **Scenario:** A regional Trust's patient portal collapsed during a national vaccination campaign. Traffic tripled in two hours. Appointment bookings failed, clinical staff lost access to patient records, and the system was down long enough to disrupt an entire day of planned care. This architecture prevents it from happening again.
 
 ![AWS](https://img.shields.io/badge/Cloud-AWS-orange?logo=amazonaws)
 ![Architecture](https://img.shields.io/badge/Architecture-Multi--AZ%20Resilient-blue)
@@ -11,7 +11,7 @@
 
 ## The Problem
 
-Hartwell NHS Foundation Trust runs a patient-facing digital platform covering appointment booking, test results, medication queries, and clinical staff access to patient records. The platform runs on a handful of EC2 instances sitting behind a load balancer, connected to a single RDS database. Everything is hosted in one Availability Zone.
+Hartwell Foundation Trust runs a patient-facing digital platform covering appointment booking, test results, medication queries, and clinical staff access to patient records. The platform runs on a handful of EC2 instances sitting behind a load balancer, connected to a single RDS database. Everything is hosted in one Availability Zone.
 
 During a national vaccination campaign rollout, the Trust sent appointment invitations to hundreds of thousands of patients over a single weekend. Within two hours, traffic tripled. The database became the bottleneck first, then the application servers fell over. The platform was down for several hours.
 
@@ -92,7 +92,7 @@ The ALB sits in public subnets (one per Availability Zone) because it needs to r
 
 Lambda is the right tool when individual operations are short and event-driven, such as processing a single form submission. It was the right choice for the startup in Solution 1.
 
-A healthcare patient portal is more complex. It handles session management, complex database queries that join multiple tables, integrations with NHS systems, background processing jobs for appointment reminders and results notifications, and workflows that may take longer than 15 minutes to complete. Lambda has a hard execution limit of 15 minutes per function invocation. Any process that exceeds that limit is cut off mid-execution. For a clinical workflow, that is not acceptable.
+A healthcare patient portal is more complex. It handles session management, complex database queries that join multiple tables, integrations with  systems, background processing jobs for appointment reminders and results notifications, and workflows that may take longer than 15 minutes to complete. Lambda has a hard execution limit of 15 minutes per function invocation. Any process that exceeds that limit is cut off mid-execution. For a clinical workflow, that is not acceptable.
 
 EC2 instances run continuously, hold application state across requests, and have no execution time limits. They are the right model for applications with this kind of complexity.
 
@@ -166,7 +166,7 @@ A private subnet has no direct route to or from the public internet. Nothing out
 
 **The NAT Gateway**
 
-Private subnet resources sometimes need to make outbound calls to the internet: downloading a software update, calling an NHS API, or fetching a certificate revocation list. The NAT Gateway sits in the public subnet and allows outbound-only internet access from private resources. It is a one-way door: private resources can call out, but nothing from the internet can call in through it.
+Private subnet resources sometimes need to make outbound calls to the internet: downloading a software update, calling an  API, or fetching a certificate revocation list. The NAT Gateway sits in the public subnet and allows outbound-only internet access from private resources. It is a one-way door: private resources can call out, but nothing from the internet can call in through it.
 
 **Security Groups**
 
@@ -230,7 +230,7 @@ Set alarms on the metrics that matter most and connect them to an alerting chann
 
 CloudTrail is different from CloudWatch. CloudWatch tells you what the platform is doing in real time. CloudTrail records every API call made against your AWS account: who changed a security group rule, who modified the RDS configuration, which IAM role performed a database query, and when.
 
-For a healthcare organisation, this is not optional. Clinical data systems are subject to NHS Data Security and Protection standards, NHS DSP Toolkit requirements, and UK GDPR. Being able to produce a complete audit trail of who accessed what and when is a compliance requirement.
+For a healthcare organisation, this is not optional. Clinical data systems are subject to  Data Security and Protection standards,  DSP Toolkit requirements, and UK GDPR. Being able to produce a complete audit trail of who accessed what and when is a compliance requirement.
 
 CloudTrail logs should be written to a separate S3 bucket with write-once controls enabled. This ensures that even if an incident compromised the main environment, the audit log remains intact.
 
